@@ -1,7 +1,7 @@
 class AFDState:
-    def __init__(self, name, type) -> None:
+    def __init__(self, name, types) -> None:
         self.name = name
-        self.type = type
+        self.types = types
         self.transitions = {}
 
 class AFD:
@@ -10,8 +10,8 @@ class AFD:
         self.states = {}
         self.start_state = ''
     
-    def add_state(self, name, type='none'):
-        new_state = AFDState(name, type)
+    def add_state(self, name, types=('none')):
+        new_state = AFDState(name, types)
         self.states.update({name : new_state})
 
         if type == 'start':
