@@ -1,0 +1,43 @@
+# AFD que reconhece palavras que possuem 'aa' ou 'bb' como subpalavra
+alphabet:
+  - a
+  - b
+states:
+  state:
+    name: q0
+    type: start
+    transitions:
+      transition:
+        symbol: a
+        next_state: q1
+      transition:
+        symbol: b
+        next_state: q2
+  state:
+    name: q1
+    transitions:
+      transition:
+        symbol: a
+        next_state: qf
+      transition:
+        symbol: b
+        next_state: q2
+  state:
+    name: q2
+    transitions:
+      transition:
+        symbol: a
+        next_state: q1
+      transition:
+        symbol: b
+        next_state: qf
+  state:
+    name: qf
+    type: final
+    transitions:
+      transition:
+        symbol: a
+        next_state: qf
+      transition:
+        symbol: b
+        next_state: qf
