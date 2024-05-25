@@ -27,8 +27,7 @@ def test_afd():
 
 def test_yaml_parser_afd():
     parser = YAMLParser.YAMLParser()
-    # afd = parser.parse_afd('test.yaml')
-    afd = parser.parse_afd('../../tests/examples/ex1.yaml')
+    afd = parser.parse_afd('../../tests/afd/aa-bb.yaml')
     afd.proccess_string('ababab', print_info=True)
 
 test_yaml_parser_afd()
