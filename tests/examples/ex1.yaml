@@ -3,41 +3,31 @@ alphabet:
   - a
   - b
 states:
-  state:
-    name: q0
-    type: start
+  - name: q0
+    types:
+      - start
     transitions:
-      transition:
-        symbol: a
+      - symbol: a
         next_state: q1
-      transition:
-        symbol: b
+      - symbol: b
         next_state: q2
-  state:
-    name: q1
+  - name: q1
     transitions:
-      transition:
-        symbol: a
+      - symbol: a
         next_state: qf
-      transition:
-        symbol: b
+      - symbol: b
         next_state: q2
-  state:
-    name: q2
+  - name: q2
     transitions:
-      transition:
-        symbol: a
+      - symbol: a
         next_state: q1
-      transition:
-        symbol: b
+      - symbol: b
         next_state: qf
-  state:
-    name: qf
-    type: accept
+  - name: qf
+    types:
+      - accept
     transitions:
-      transition:
-        symbol: a
+      - symbol: a
         next_state: qf
-      transition:
-        symbol: b
+      - symbol: b
         next_state: qf

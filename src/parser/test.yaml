@@ -1,0 +1,14 @@
+# AFD que reconhece qualquer palavra
+alphabet:
+  - a
+  - b
+states:
+  - name: q0
+    types:
+      - start
+      - final
+    transitions:
+      - symbol: a
+        next_state: q0
+      - symbol: b
+        next_state: q0
