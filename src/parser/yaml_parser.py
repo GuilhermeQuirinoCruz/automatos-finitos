@@ -30,6 +30,9 @@ class YAMLParser():
         
         afd = AFD.AFD(afd_data['alphabet'])
         for state in afd_data['states']:
-            print(state)
+            afd.add_state(state['name'], tuple(state.get('types') or ['none']))
+
+            for transition in state['transitions']:
+                afd.add_transition_to_state(state['name'], transition['symbol'], transition['next_state'])
 
         return afd

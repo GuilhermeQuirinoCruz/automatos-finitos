@@ -10,7 +10,7 @@ class AFD:
         self.states = {}
         self.start_state = ''
     
-    def add_state(self, name, types=('none')):
+    def add_state(self, name, types):
         new_state = AFDState(name, types)
         self.states.update({name : new_state})
 
