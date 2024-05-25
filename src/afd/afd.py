@@ -14,7 +14,7 @@ class AFD:
         new_state = AFDState(name, types)
         self.states.update({name : new_state})
 
-        if type == 'start':
+        if 'start' in types:
             self.start_state = name
 
     def add_transition_to_state(self, state, symbol, next_state):
@@ -43,7 +43,7 @@ class AFD:
 
             current_state = next_state
 
-        accept_string = self.states.get(current_state).type == 'accept'
+        accept_string = 'accept' in self.states.get(current_state).types
         if print_info:
             print('String accepted' if accept_string else 'String rejected')
         
