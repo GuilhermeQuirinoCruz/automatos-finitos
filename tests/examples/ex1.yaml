@@ -33,7 +33,7 @@ states:
         next_state: qf
   state:
     name: qf
-    type: final
+    type: accept
     transitions:
       transition:
         symbol: a
