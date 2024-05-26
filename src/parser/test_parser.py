@@ -7,26 +7,31 @@ class Test():
         self.strings_accept = strings_accept
         self.strings_reject = strings_reject
     
+    def proccess_strings(self, afd, verbose, strings, expected):
+        expected_string = 'accept' if expected else 'reject'
+        for string in strings:
+            if verbose > 0:
+                print(f'Processing string {string}')
+                print(f'Expected result: {expected_string}')
+            
+            if afd.proccess_string(string, print_info=(verbose > 1)) != expected:
+                if verbose > 0:
+                    print(f'Unexpected result: {'rejected' if expected else 'accepted'}')
+                
+                return False
+            else:
+                if verbose > 0:
+                    print(f'Result: {expected_string}ed')
+
     def test_afd(self, afd, verbose=0):
-        for accept in self.strings_accept:
-            if verbose > 0:
-                print(f'Processing string {accept}, should accept')
-            
-            if not afd.proccess_string(accept, print_info=(verbose > 1)):
-                if verbose > 0:
-                    print('Incorrectly rejected string')
-                
-                return False
+        if not self.proccess_strings(afd, verbose, self.strings_accept, True):
+            return False
+
+        if verbose > 0:
+            print("")
         
-        for reject in self.strings_reject:
-            if verbose > 0:
-                print(f'Processing string {reject}, should reject')
-            
-            if afd.proccess_string(reject, print_info=(verbose > 1)):
-                if verbose > 0:
-                    print('Incorrectly accepted string')
-                
-                return False
+        if not self.proccess_strings(afd, verbose, self.strings_reject, False):
+            return False
 
         return True
 
