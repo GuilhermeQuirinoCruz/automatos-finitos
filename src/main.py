@@ -36,4 +36,11 @@ def test_test_parser():
     print(test.strings_accept)
     print(test.strings_reject)
 
-test_test_parser()
+def test_afd_and_test():
+    parser = YAMLParser.YAMLParser()
+    afd = parser.parse_afd('../../tests/afd/aa-bb.yaml')
+    test = TestParser.parse_yaml('../../tests/strings/str-aa-bb.yaml')
+
+    print(test.test_afd(afd, 0))
+
+test_afd_and_test()
