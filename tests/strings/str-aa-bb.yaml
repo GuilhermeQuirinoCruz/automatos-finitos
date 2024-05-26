@@ -1,0 +1,17 @@
+# Strings para testar um autômato que reconhece palavras que 
+# possuem 'aa' ou 'bb' como subpalavra
+accept:
+  - aa
+  - bb
+  - aaa
+  - aab
+  - abb
+  - baa
+  - bbb
+reject:
+  - a
+  - b
+  - ab
+  - ba
+  - aba
+  - bab

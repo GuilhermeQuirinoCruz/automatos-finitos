@@ -1,4 +1,5 @@
 import parser.yaml_parser as YAMLParser
+import parser.test_parser as TestParser
 
 import afd.afd as AFD
 import afn
@@ -30,4 +31,9 @@ def test_yaml_parser_afd():
     afd = parser.parse_afd('../../tests/afd/aa-bb.yaml')
     afd.proccess_string('ababab', print_info=True)
 
-test_yaml_parser_afd()
+def test_test_parser():
+    test = TestParser.parse_yaml('../../tests/strings/str-aa-bb.yaml')
+    print(test.strings_accept)
+    print(test.strings_reject)
+
+test_test_parser()
