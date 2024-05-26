@@ -25,7 +25,7 @@ def test_afd():
 
     print(test.test_afd(afd, 2))
 
-def run_all_tests():
+def run_all_afd_tests():
     test_yaml_parser_afd()
     print('')
 
@@ -34,8 +34,13 @@ def run_all_tests():
 
     test_afd()
 
+def test_yaml_parser_afn():
+    print('> Testing the YAML parser for AFNs')
+    parser = YAMLParser.YAMLParser()
+    afn = parser.parse_afn('../../tests/afn/aa-bb.yaml')
+
 def main():
-    test_afd()
+    test_yaml_parser_afn()
 
 if __name__ == "__main__":
     main()

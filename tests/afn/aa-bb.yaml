@@ -1,0 +1,37 @@
+# AFN que reconhece palavras que possuem 'aa' ou 'bb' como subpalavra
+alphabet:
+  - a
+  - b
+states:
+  - name: q0
+    types:
+      - start
+    transitions:
+      - symbol: a
+        next_states:
+          - q0
+          - q1
+      - symbol: b
+        next_states:
+          - q0
+          - q2
+  - name: q1
+    transitions:
+      - symbol: a
+        next_states:
+          - qf
+  - name: q2
+    transitions:
+      - symbol: b
+        next_states:
+          - qf
+  - name: qf
+    types:
+      - accept
+    transitions:
+      - symbol: a
+        next_states:
+          - qf
+      - symbol: b
+        next_states:
+          - qf
