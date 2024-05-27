@@ -39,8 +39,16 @@ def test_yaml_parser_afn():
     parser = YAMLParser.YAMLParser()
     afn = parser.parse_afn('../../tests/afn/aa-bb.yaml')
 
+def test_afn():
+    print('> Testing the AFN proccess_string function')
+    parser = YAMLParser.YAMLParser()
+    afn = parser.parse_afn('../../tests/afn/aa-bb.yaml')
+
+    afn.proccess_string('aaabb', True)
+    afn.proccess_string('abab', True)
+
 def main():
-    test_yaml_parser_afn()
+    test_afn()
 
 if __name__ == "__main__":
     main()
