@@ -48,7 +48,7 @@ def test_afn():
     print(test.test_fsm(afn, 2))
 
 def main():
-    test_afd()
+    test_afn()
 
 if __name__ == "__main__":
     main()
