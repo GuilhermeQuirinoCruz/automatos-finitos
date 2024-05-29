@@ -23,7 +23,7 @@ def test_afd():
     afd = parser.parse_afd('../../tests/afd/aa-bb.yaml')
     test = TestParser.parse_yaml('../../tests/strings/str-aa-bb.yaml')
 
-    print(test.test_afd(afd, 2))
+    print(test.test_fsm(afd, 2))
 
 def run_all_afd_tests():
     test_yaml_parser_afd()
@@ -40,15 +40,15 @@ def test_yaml_parser_afn():
     afn = parser.parse_afn('../../tests/afn/aa-bb.yaml')
 
 def test_afn():
-    print('> Testing the AFN proccess_string function')
+    print('> Testing the AFN')
     parser = YAMLParser.YAMLParser()
     afn = parser.parse_afn('../../tests/afn/aa-bb.yaml')
 
-    afn.proccess_string('aaabb', True)
-    afn.proccess_string('abab', True)
+    test = TestParser.parse_yaml('../../tests/strings/str-aa-bb.yaml')
+    print(test.test_fsm(afn, 2))
 
 def main():
-    test_afn()
+    test_afd()
 
 if __name__ == "__main__":
     main()

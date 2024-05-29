@@ -7,14 +7,14 @@ class Test():
         self.strings_accept = strings_accept
         self.strings_reject = strings_reject
     
-    def proccess_strings(self, afd, verbose, strings, expected):
+    def proccess_strings(self, fsm, verbose, strings, expected):
         expected_string = 'accept' if expected else 'reject'
         for string in strings:
             if verbose > 0:
                 print(f'Processing string {string}')
                 print(f'Expected result: {expected_string}')
             
-            if afd.proccess_string(string, print_info=(verbose > 1)) != expected:
+            if fsm.proccess_string(string, print_info=(verbose > 1)) != expected:
                 if verbose > 0:
                     print(f'Unexpected result: {'rejected' if expected else 'accepted'}')
                 
@@ -22,15 +22,17 @@ class Test():
             else:
                 if verbose > 0:
                     print(f'Result: {expected_string}ed')
-
-    def test_afd(self, afd, verbose=0):
-        if not self.proccess_strings(afd, verbose, self.strings_accept, True):
+        
+        return True
+    
+    def test_fsm(self, fsm, verbose=0):
+        if not self.proccess_strings(fsm, verbose, self.strings_accept, True):
             return False
 
         if verbose > 0:
             print("")
         
-        if not self.proccess_strings(afd, verbose, self.strings_reject, False):
+        if not self.proccess_strings(fsm, verbose, self.strings_reject, False):
             return False
 
         return True
