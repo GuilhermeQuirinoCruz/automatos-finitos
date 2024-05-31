@@ -47,8 +47,18 @@ def test_afn():
     test = TestParser.parse_yaml('../../tests/strings/str-aa-bb.yaml')
     print(test.test_fsm(afn, 2))
 
+def test_afn_e():
+    print('> Testing the AFN-ε')
+    parser = YAMLParser.YAMLParser()
+    # afn_e = parser.parse_afn_e('../../tests/afn_e/a-before-b.yaml')
+    afn_e = parser.parse_afn_e('../../tests/afn_e/suffix-a-bb-ccc.yaml')
+
+    # test = TestParser.parse_yaml('../../tests/strings/str-a-before-b.yaml')
+    test = TestParser.parse_yaml('../../tests/strings/str-suffix-a-bb-ccc.yaml')
+    print(test.test_fsm(afn_e, 2))
+
 def main():
-    test_afn()
+    test_afn_e()
 
 if __name__ == "__main__":
     main()

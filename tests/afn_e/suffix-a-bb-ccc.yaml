@@ -1,0 +1,58 @@
+# AFN-ε que reconhece palavras que possuem como sufixo 'a' ou 'bb' ou 'ccc'
+alphabet:
+  - a
+  - b
+  - c
+states:
+  - name: q0
+    types:
+      - start
+    transitions:
+      - symbol: ε
+        next_states:
+          - q1
+          - q2
+          - q4
+      - symbol: a
+        next_states:
+          - q0
+      - symbol: b
+        next_states:
+          - q0
+      - symbol: c
+        next_states:
+          - q0
+  - name: q1
+    transitions:
+      - symbol: a
+        next_states:
+          - q7
+  - name: q2
+    transitions:
+      - symbol: b
+        next_states:
+          - q3
+  - name: q3
+    transitions:
+      - symbol: b
+        next_states:
+          - q7
+  - name: q4
+    transitions:
+      - symbol: c
+        next_states:
+          - q5
+  - name: q5
+    transitions:
+      - symbol: c
+        next_states:
+          - q6
+  - name: q6
+    transitions:
+      - symbol: c
+        next_states:
+          - q7
+  - name: q7
+    types:
+      - accept
+    transitions:

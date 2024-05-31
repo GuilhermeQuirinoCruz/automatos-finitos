@@ -1,0 +1,19 @@
+# Strings para testar um autômato que reconhece palavras
+# que possuem como sufixo 'a' ou 'bb' ou 'ccc'
+accept:
+  - a
+  - aa
+  - ba
+  - bb
+  - ca
+  - aaa
+  - bbb
+  - ccc
+reject:
+  - b
+  - c
+  - ab
+  - ac
+  - bc
+  - cc
+  - aab

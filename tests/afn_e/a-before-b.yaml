@@ -1,0 +1,22 @@
+# AFN-ε que reconhece palavras em que qualquer símbolo 'a' antecede qualquer símbolo 'b'
+alphabet:
+  - a
+  - b
+states:
+  - name: q0
+    types:
+      - start
+    transitions:
+      - symbol: a
+        next_states:
+          - q0
+      - symbol: ε
+        next_states:
+          - q1
+  - name: q1
+    types:
+      - accept
+    transitions:
+      - symbol: b
+        next_states:
+          - q1

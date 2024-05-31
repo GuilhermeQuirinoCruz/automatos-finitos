@@ -1,0 +1,17 @@
+# Strings para testar um autômato que reconhece palavras
+# em que qualquer símbolo 'a' antecede qualquer símbolo 'b'
+accept:
+  - a
+  - b
+  - aa
+  - ab
+  - bb
+  - aaa
+  - aab
+  - aba
+reject:
+  - ba
+  - aba
+  - baa
+  - bab
+  - bba

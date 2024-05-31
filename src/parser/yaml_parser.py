@@ -5,6 +5,7 @@ from collections import Counter
 
 import afd.afd as AFD
 import afn.afn as AFN
+import afn_e.afn_e as AFN_E
 
 # https://gist.github.com/pypt/94d747fe5180851196eb
 # https://stackoverflow.com/questions/44904290/getting-duplicate-keys-in-yaml-using-python
@@ -50,3 +51,19 @@ class YAMLParser():
                 afn.add_transition_to_state(state['name'], transition['symbol'], transition['next_states'])
 
         return afn
+
+    def parse_afn_e(self, path):
+        with open(os.path.join(os.path.dirname(__file__), path), 'r') as file:
+            afn_data = yaml.safe_load(file)
+        
+        afn_e = AFN_E.AFN_E(afn_data['alphabet'])
+        for state in afn_data['states']:
+            afn_e.add_state(state['name'], tuple(state.get('types') or ['none']))
+
+            if not state.get('transitions'):
+                continue
+
+            for transition in state['transitions']:
+                afn_e.add_transition_to_state(state['name'], transition['symbol'], transition['next_states'])
+
+        return afn_e
