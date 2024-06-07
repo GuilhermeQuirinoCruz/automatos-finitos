@@ -1,9 +1,5 @@
-import parser.yaml_parser as YAMLParser
-import parser.test_parser as TestParser
-
-import afd.afd as AFD
-import afn
-import afn_e
+import src.parser.yaml_parser as YAMLParser
+import src.parser.test_parser as TestParser
 
 def test_yaml_parser_afd():
     print('> Testing the YAML parser for AFDs')

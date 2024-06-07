@@ -42,4 +42,3 @@ def parse_yaml(path):
         test_data = yaml.safe_load(file)
     
     return Test(test_data.get('accept'), test_data.get('reject'))
-        
