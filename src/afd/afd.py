@@ -1,7 +1,7 @@
 class AFDState:
-    def __init__(self, name, types) -> None:
+    def __init__(self, name) -> None:
         self.name = name
-        self.types = types
+        self.is_final = False
         self.transitions = {}
 
 class AFD:
@@ -10,15 +10,18 @@ class AFD:
         self.states = {}
         self.start_state = ''
     
-    def add_state(self, name, types):
-        new_state = AFDState(name, types)
+    def add_state(self, name):
+        new_state = AFDState(name)
         self.states.update({name : new_state})
-
-        if 'start' in types:
-            self.start_state = name
 
     def add_transition_to_state(self, state, symbol, next_state):
         self.states.get(state).transitions.update({symbol : next_state})
+    
+    def set_start_state(self, state):
+        self.start_state = state
+
+    def set_state_as_final(self, state):
+        self.states.get(state).is_final = True
 
     def proccess_string(self, string, print_info=False):
         if print_info:
@@ -43,8 +46,8 @@ class AFD:
 
             current_state = next_state
 
-        accept_string = 'accept' in self.states.get(current_state).types
+        string_accepted = self.states.get(current_state).is_final
         if print_info:
-            print('String accepted' if accept_string else 'String rejected')
+            print('String accepted' if string_accepted else 'String rejected')
         
-        return accept_string
+        return string_accepted

@@ -3,7 +3,10 @@ import parser.txt_parser as TXTParser
 
 def main():
     txt_parser = TXTParser.TXTParser()
-    txt_parser.parse_afd('tests/afd/teste_1.txt')
+    (afd, test_strings) = txt_parser.parse_afd('src/tests/afd/teste_2.txt')
+
+    for string in test_strings:
+        print('Aceita' if afd.proccess_string(string) else 'Rejeita')
 
 if __name__ == "__main__":
     main()
