@@ -10,24 +10,16 @@ class AFN:
         self.states = {}
         self.start_state = ''
     
-    def add_state(self, name, types):
-        new_state = AFNState(name, types)
-        self.states.update({name : new_state})
-
-        if 'start' in types:
-            self.start_state = name
-    
     def add_state(self, name):
         new_state = AFNState(name)
         self.states.update({name : new_state})
     
     def add_transition_to_state(self, state, symbol, next_state):
         next_states = self.states.get(state).transitions.get(symbol) or set()
-        if len(next_states) > 0:
-            next_states.add(next_state)
-        else:
-            self.states.get(state).transitions.update({symbol : next_states})
-    
+        next_states.add(next_state)
+
+        self.states.get(state).transitions.update({symbol : next_states})
+        
     def set_start_state(self, state):
         self.start_state = state
     

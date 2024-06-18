@@ -1,6 +1,7 @@
 import os
 
 import afd.afd as AFD
+import afn.afn as AFN
 
 class TXTParser:
     def extract_data(self, path):
@@ -33,7 +34,26 @@ class TXTParser:
         return afd, test_strings
 
     def parse_afn(self, path):
-        pass
+        data = self.extract_data(path)
+
+        alphabet = data[0].split(' ')
+        afn = AFN.AFN(alphabet)
+
+        for state in data[1].split():
+            afn.add_state(state)
+        
+        transition_amount = int(data[2])
+        for i in range(transition_amount):
+            (state, symbol, next_state) = data[3 + i].split()
+            afn.add_transition_to_state(state, symbol, next_state)
+        
+        afn.set_start_state(data[3 + transition_amount])
+        for state in data[4 + transition_amount].split():
+            afn.set_state_as_final(state)
+
+        test_strings = data[6 + transition_amount:]
+        
+        return afn, test_strings
 
     def parse_afn_e(self, path):
         pass
