@@ -1,7 +1,7 @@
 class AFNState:
-    def __init__(self, name, types) -> None:
+    def __init__(self, name) -> None:
         self.name = name
-        self.types = types
+        self.is_final = False
         self.transitions = {}
 
 class AFN:
@@ -17,8 +17,22 @@ class AFN:
         if 'start' in types:
             self.start_state = name
     
-    def add_transition_to_state(self, state, symbol, next_states):
-        self.states.get(state).transitions.update({symbol : next_states})
+    def add_state(self, name):
+        new_state = AFNState(name)
+        self.states.update({name : new_state})
+    
+    def add_transition_to_state(self, state, symbol, next_state):
+        next_states = self.states.get(state).transitions.get(symbol) or set()
+        if len(next_states) > 0:
+            next_states.add(next_state)
+        else:
+            self.states.get(state).transitions.update({symbol : next_states})
+    
+    def set_start_state(self, state):
+        self.start_state = state
+    
+    def set_state_as_final(self, state):
+        self.states.get(state).is_final = True
     
     def proccess_string(self, string, print_info=False):
         if print_info:
@@ -65,7 +79,7 @@ class AFN:
             if print_info:
                 print(f'Checking if {state.name} is final')
             
-            if 'accept' in state.types:
+            if state.is_final:
                 if print_info:
                     print('String accepted')
                     print(f'{state.name} is final')
